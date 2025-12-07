@@ -1,0 +1,9 @@
+# Fichiers d'environnement
+.env
+
+# Dossier virtuel Python
+.venv/
+
+# Fichiers temporaires / logs
+*.pyc
+__pycache__/
