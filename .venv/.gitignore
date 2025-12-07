@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pycache/
+*.egg-info/
+dist/
+build/
+
+# Virtual environment
+.venv/
+venv/
+
+# Jupyter / notebooks
+.ipynb_checkpoints/
+
+# Data
+data/*.csv 
+
+# Environment variables
+.env
+
+# Logs
+*.log
+
+# VSCode
+.vscode/
