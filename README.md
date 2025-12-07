@@ -43,10 +43,10 @@ TP_bigdata/
 Créer un fichier `.env` à la racine :
 
 ```
-MONGO_URI=mongodb+srv://<user>:<password>@cluster0.mongodb.net/
-DB_NAME=books_db
-COLLECTION_NAME=books
-CSV_FILE=C:/Users/eyabe/Documents/MasterBD/TP_bigdata/data/books.csv
+MONGO_URI
+DB_NAME
+COLLECTION_NAME
+CSV_FILE
 ```
 
 ---
