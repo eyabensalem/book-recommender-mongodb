@@ -92,16 +92,17 @@ Ce script exécute plusieurs traitements :
 ### ✔️ 6. Moyenne des notes d’un auteur
 
 ## 📸 Importation des données dans MongoDB
-![Import data](images/Capture d'écran 2025-12-07 215318.png)
+![Import data](images/Capture_1.png)
 
 ## 📊 Résultat après import
-![Résultat import](images/Capture d'écran 2025-12-07 215537.png)
+![Résultat import](images/Capture_2.png)
 
 ## 🔍 Exemples de documents affichés
-![Exemples documents](images/Capture d'écran 2025-12-07 215909.png)
+![Exemples documents](images/Capture_3.png)
 
 ## ⭐ Statistiques extraites (Top Rating, Langues…)
-![Stats extraction](images/Capture d'écran 2025-12-07 215927.png)
+![Stats extraction](images/Capture_4.png)
+
 
 
 ## 🧠 6. Ce que j’ai appris
