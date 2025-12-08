@@ -1,4 +1,14 @@
 pymongo
 python-dotenv
 pandas
+scikit-learn
+xgboost
+joblib
+fastapi
+uvicorn
+jinja2
+schedule
+streamlit
 matplotlib
+seaborn
+wordcloud

@@ -1,19 +1,100 @@
-# 📚 Projet Big Data – MongoDB & Python
 
-Ce projet consiste à manipuler un dataset de livres, à l’ingérer dans MongoDB et à effectuer plusieurs requêtes d’analyse grâce à Python.
+# 🎯 **Projet Big Data – Pipeline complet (ETL • API • Dashboard • Analytics • ML)**
 
-## 🚀 1. Pré-requis
+# 📘 **Présentation du projet**
 
-### Technologies utilisées
+Ce projet met en place un **pipeline Big Data complet** permettant :
 
-* Python 3.10+
-* MongoDB Atlas
-* Pandas
-* Pymongo
-* python-dotenv
-* VS Code
+* 📥 **Ingestion** de données livres (CSV → MongoDB)
+* 🧹 **Nettoyage et transformation** (Quality checks, enrichissement)
+* 📊 **Analyse statistique** + génération de graphiques
+* 🔌 **API REST FastAPI**
+* 📈 **Dashboard interactif Streamlit**
+* 🤖 **Machine Learning** (modèle prédictif)
+* 📦 **Export des résultats** dans un dossier `artifacts/`
 
-### Installation des dépendances
+🎯 **Objectif réel : démontrer une architecture Big Data end-to-end, propre, scalable et proche d’un contexte entreprise.**
+
+---
+
+# 🏗️ **Architecture globale**
+
+```
+                   ┌──────────────────────────┐
+                   │        Dataset CSV        │
+                   │      (books_raw.csv)      │
+                   └───────────────┬───────────┘
+                                   │
+                        📥 Ingestion (Python)
+                                   │
+                                   ▼
+                 ┌────────────────────────────┐
+                 │        MongoDB Atlas        │
+                 │  (stockage + logs ingestion)│
+                 └───────────────┬────────────┘
+                                   │
+                          🧹 Transformation
+                                   │
+                                   ▼
+                data/books_clean.csv (dataset propre)
+                                   │
+                                   ▼
+                     📊 Analyse & Visualisation
+        (top books, top authors, yearly rating, stats globales)
+                                   │
+                                   ▼
+                       🤖 Machine Learning
+          RandomForest → modèle.pkl + métriques d’entraînement
+                                   │
+                                   ▼
+                       📦 artifacts/ (outputs)
+                                   │
+             ┌────────────────────────────────────┐
+             │                    │                │
+             ▼                    ▼                ▼
+       🔌 API FastAPI      📈 Dashboard Streamlit   CSV/PNG
+```
+
+---
+
+# 📂 **Structure du projet**
+
+```
+TP_bigdata/
+│── README.md
+│── requirements.txt
+│── artifacts/               # Graphiques, CSV, modèle ML
+│── data/
+│   ├── books_raw.csv
+│   └── books_clean.csv
+│
+│── src/
+│   ├── ingestion/
+│   │   └── ingest_books.py
+│   ├── transformation/
+│   │   └── clean_books.py
+│   ├── analytics/
+│   │   └── analyze_books.py
+│   ├── api/
+│   │   └── app.py
+│   └── dashboard/
+│       └── app.py
+```
+
+---
+
+# ⚙️ **Installation**
+
+### 1. Cloner et activer l’environnement
+
+```bash
+git clone https://github.com/eya/Projet_bigdata.git
+cd Projet_bigdata
+python -m venv .venv
+.venv\Scripts\activate
+```
+
+### 2. Installer les dépendances
 
 ```bash
 pip install -r requirements.txt
@@ -21,94 +102,143 @@ pip install -r requirements.txt
 
 ---
 
-## 📁 2. Structure du projet
-
-```
-TP_bigdata/
-│── data/
-│   └── books.csv
-│── src/
-│   ├── import_data.py
-│   └── main.py
-│── .env
-│── .gitignore
-│── README.md
-│── requirements.txt
-```
-
----
-
-## 🔐 3. Configuration (.env)
-
-Créer un fichier `.env` à la racine :
-
-```
-MONGO_URI
-DB_NAME
-COLLECTION_NAME
-CSV_FILE
-```
-
----
-
-## 📥 4. Importation des données vers MongoDB
-
-Lancer le script d'import :
+# 1️⃣ **Ingestion des données**
 
 ```bash
-python src/import_data.py
+python src/ingestion/ingest_books.py
 ```
 
-Exemple de résultat attendu :
+* Lecture du fichier brut
+* Enregistrement dans MongoDB
+* Log d’ingestion
+
+---
+
+# 2️⃣ **Transformation & Nettoyage**
+
+```bash
+python src/transformation/clean_books.py
+```
+
+* Nettoyage intelligent des données
+* Enrichissement (scores, valeurs dérivées)
+* Gestion des valeurs manquantes
+* Export → `data/books_clean.csv`
+
+---
+
+# 3️⃣ **Analyse et visualisation**
+
+```bash
+python src/analytics/analyze_books.py
+```
+
+Génère automatiquement :
+
+📌 statistiques globales
+📌 top livres
+📌 top auteurs
+📌 évolution du rating par année
+📌 graphiques (PNG)
+📌 CSV d'analyse
+📌 modèle ML → `artifacts/model.pkl`
+
+---
+
+# 4️⃣ **API FastAPI**
+
+### Lancer l'API
+
+```bash
+uvicorn src.api.app:app --reload --port 8000
+```
+
+Endpoints disponibles :
+
+| Endpoint         | Description               |
+| ---------------- | ------------------------- |
+| `/health`        | Vérifier l'état de l'API  |
+| `/collections`   | Liste MongoDB             |
+| `/top-books`     | Top 10                    |
+| `/top-authors`   | Classement auteurs        |
+| `/yearly-rating` | Évolution                 |
+| `/predict`       | ML : Prédiction du rating |
+
+---
+
+# 5️⃣ **Dashboard (Streamlit)**
+
+### Lancer le dashboard :
+
+```bash
+streamlit run src/dashboard/app.py
+```
+
+Fonctionnalités :
+
+* 📊 statistiques globales
+* 🏆 top books / top authors
+* 📈 graphiques déjà générés
+* 🤖 prédictions ML
+* 🔌 communication automatique avec l’API
+
+### Configuration optionnelle (`secrets.toml`)
 
 ```
-➡️ CSV_FILE détecté : data/books.csv
-📄 Dataset chargé : 1354 lignes
-✅ 1354 documents insérés dans MongoDB !
+~/.streamlit/secrets.toml
+```
+
+```toml
+API_BASE = "http://127.0.0.1:8000"
 ```
 
 ---
 
-## 🔎 5. Analyses & Requêtes (main.py)
+# 🤖 **Machine Learning**
 
-Lancer :
+Modèle utilisé :
+➡️ **RandomForestRegressor**
 
-```bash
-python src/main.py
+Objectif :
+📌 prédire le `average_rating` à partir de :
+
+* num_pages
+* ratings_count
+* text_reviews_count
+* popularity_score
+
+Résultats exportés dans :
+
+```
+artifacts/model.pkl
 ```
 
-Ce script exécute plusieurs traitements :
+---
 
-### ✔️ 1. Affiche quelques documents
+# 🧪 **Tests rapides**
 
-### ✔️ 2. Top 10 livres les mieux notés
+### API
 
-### ✔️ 3. Nombre de livres par langue
+[http://127.0.0.1:8000/health](http://127.0.0.1:8000/health)
 
-### ✔️ 4. Livres d’un auteur spécifique (ex : J.K. Rowling)
+### Dashboard
 
-### ✔️ 5. Top 5 des livres les plus longs
+[http://localhost:8501](http://localhost:8501)
 
-### ✔️ 6. Moyenne des notes d’un auteur
+---
 
-## 📸 Importation des données dans MongoDB
-![Import data](images/Capture_1.png)
+# 🏁 **Conclusion **
 
-## 📊 Résultat après import
-![Résultat import](images/Capture_2.png)
+Ce projet illustre la mise en place d’un **pipeline Big Data complet**, depuis la collecte des données jusqu’à leur exploitation via une API et un dashboard interactif.
+Il démontre :
 
-## 🔍 Exemples de documents affichés
-![Exemples documents](images/Capture_3.png)
+* la maîtrise de l'ingestion et de la gestion de données volumineuses
+* l’application de techniques de **data cleaning** et de transformation
+* la capacité à produire des analyses statistiques automatisées
+* la création d'une API performante (FastAPI)
+* l'intégration dans un dashboard professionnel (Streamlit)
+* l’entraînement d’un modèle Machine Learning intégré au pipeline
 
-## ⭐ Statistiques extraites (Top Rating, Langues…)
-![Stats extraction](images/Capture_4.png)
+➡️ Ce projet reflète une architecture **réaliste et opérationnelle**, similaire à ce qui est utilisé dans les entreprises data-driven.
 
-
-
-## 🧠 6. Ce que j’ai appris
-
-* Manipulation d’une base NoSQL MongoDB
-* Création d’un cluster MongoDB Atlas
-* Importation massive de données (`insert_many`)
-* Requêtes avancées : tri, filtrage, agrégations
-* Construction d’un mini pipeline Python → MongoDB → Analyse
+---
