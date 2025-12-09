@@ -13,7 +13,6 @@ Ce projet met en place un **pipeline Big Data complet** permettant :
 * 🤖 **Machine Learning** (modèle prédictif)
 * 📦 **Export des résultats** dans un dossier `artifacts/`
 
-🎯 **Objectif réel : démontrer une architecture Big Data end-to-end, propre, scalable et proche d’un contexte entreprise.**
 
 ---
 
@@ -242,3 +241,4 @@ Il démontre :
 ➡️ Ce projet reflète une architecture **réaliste et opérationnelle**, similaire à ce qui est utilisé dans les entreprises data-driven.
 
 ---
+
