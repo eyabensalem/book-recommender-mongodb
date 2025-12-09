@@ -226,8 +226,12 @@ artifacts/model.pkl
 [http://localhost:8501](http://localhost:8501)
 
 ---
+![Dashboard home](images/dashboard1.png)
+![Dashboard home](images/dashboard2.png)
+![Dashboard home](images/dashboard3.png)
+![Dashboard home](images/dashboard4.png)
 
-# 🏁 **Conclusion **
+# 🏁 Conclusion 
 
 Ce projet illustre la mise en place d’un **pipeline Big Data complet**, depuis la collecte des données jusqu’à leur exploitation via une API et un dashboard interactif.
 Il démontre :

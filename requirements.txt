@@ -1,14 +1,26 @@
-pymongo
-python-dotenv
-pandas
-scikit-learn
-xgboost
-joblib
+# Web/API
 fastapi
 uvicorn
-jinja2
-schedule
+
+# Streamlit pour le dashboard
 streamlit
+
+# MongoDB
+pymongo
+dnspython
+
+# Analyse et visualisation
+pandas
+numpy
 matplotlib
 seaborn
-wordcloud
+
+# Machine Learning
+scikit-learn
+joblib
+
+# Gestion de l'environnement
+python-dotenv
+
+# Optionnel (si tu utilises requests pour l'API)
+requests
